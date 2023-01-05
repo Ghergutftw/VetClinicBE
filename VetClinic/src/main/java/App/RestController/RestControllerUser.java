@@ -5,8 +5,9 @@ import App.Service.UserService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
+@CrossOrigin
 public class RestControllerUser {
-    private UserService userService;
+    private final UserService userService;
 
     public RestControllerUser(UserService userService) {
         this.userService = userService;

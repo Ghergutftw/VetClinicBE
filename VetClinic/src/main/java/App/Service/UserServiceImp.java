@@ -50,8 +50,9 @@ public class UserServiceImp implements UserService{
         List<User> users=userRepository.findAll();
         boolean found=false;
         for (User theUser:users) {
-            if(testingEmail.equals(theUser.getEmail())&&testingPassword.equals(theUser.getPassword())){
-                found=true;
+            if (testingEmail.equals(theUser.getEmail()) && testingPassword.equals(theUser.getPassword())) {
+                found = true;
+                break;
             }
         }
         if(found){
