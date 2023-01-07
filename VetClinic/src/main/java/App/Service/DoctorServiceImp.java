@@ -15,15 +15,13 @@ import java.util.List;
 public class DoctorServiceImp implements DoctorService {
     private final DoctorRepository doctorRepository;
     private final WorkingHoursRepository workingHoursRepository;
-    private final UserRepository userRepository;
     private final ConsultationRepository consultationRepository;
 
     @Autowired
-    public DoctorServiceImp(DoctorRepository doctorRepository, WorkingHoursRepository workingHoursRepository, UserRepository userRepository,
+    public DoctorServiceImp(DoctorRepository doctorRepository, WorkingHoursRepository workingHoursRepository,
                             ConsultationRepository consultationRepository) {
         this.doctorRepository = doctorRepository;
         this.workingHoursRepository = workingHoursRepository;
-        this.userRepository = userRepository;
         this.consultationRepository = consultationRepository;
     }
 
@@ -54,5 +52,10 @@ public class DoctorServiceImp implements DoctorService {
     public void updateDoctor(Doctor doctor, int id) {
         doctor.setId(id);
         doctorRepository.save(doctor);
+    }
+
+    @Override
+    public Doctor getDoctor(int id) {
+        return doctorRepository.getDoctorById(id);
     }
 }

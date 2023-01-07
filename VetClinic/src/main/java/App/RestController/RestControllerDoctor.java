@@ -1,6 +1,7 @@
 package App.RestController;
 
 import App.Entity.Doctor;
+import App.Repository.DoctorRepository;
 import App.Service.DoctorService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -9,10 +10,11 @@ import java.util.List;
 @CrossOrigin
 public class RestControllerDoctor {
     DoctorService doctorService;
+    DoctorRepository doctorRepository;
 
-    public RestControllerDoctor(DoctorService doctorService) {
+    public RestControllerDoctor(DoctorService doctorService, DoctorRepository doctorRepository) {
         this.doctorService = doctorService;
-
+        this.doctorRepository = doctorRepository;
     }
 
     @GetMapping("/doctors")
@@ -35,5 +37,9 @@ public class RestControllerDoctor {
         doctorService.updateDoctor(doctor,id);
     }
 
+    @GetMapping("/doctor/{id}")
+    public Doctor getDoctor(@PathVariable int id){
+        return doctorRepository.getDoctorById(id);
+    }
 
 }
