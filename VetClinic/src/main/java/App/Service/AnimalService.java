@@ -9,4 +9,6 @@ public interface AnimalService {
     void deleteAnimal(int id);
     void updateAnimal(Animal animal, int id);
     List<Consultation> showHistoryOfAnAnimal (int id);
+
+    Animal getAnimalById(int id);
 }

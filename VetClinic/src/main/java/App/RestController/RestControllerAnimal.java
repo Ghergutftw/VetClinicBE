@@ -44,5 +44,10 @@ public class RestControllerAnimal {
        return animalService.showHistoryOfAnAnimal(id);
     }
 
+    @GetMapping("/animal-id/{id}")
+    public Animal getAnimalById(@PathVariable int id){
+        return animalService.getAnimalById(id);
+    }
+
 
 }

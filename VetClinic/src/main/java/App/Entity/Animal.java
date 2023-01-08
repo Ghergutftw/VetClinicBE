@@ -16,8 +16,8 @@ public class Animal {
     @Column(name = "animal_type")
     private String animalType;
 
-    @Column(name = "species")
-    private String species;
+    @Column(name = "specie")
+    private String specie;
 
     @Column(name = "age")
     private int age;
@@ -26,11 +26,11 @@ public class Animal {
     private double weight;
 
 
-    public Animal(int id, String nickname, String animalType, String species, int age, double weight) {
+    public Animal(int id, String nickname, String animalType, String specie, int age, double weight) {
         this.id = id;
         this.nickname = nickname;
         this.animalType = animalType;
-        this.species = species;
+        this.specie = specie;
         this.age = age;
         this.weight = weight;
     }
@@ -63,12 +63,12 @@ public class Animal {
         this.animalType = animalType;
     }
 
-    public String getSpecies() {
-        return species;
+    public String getSpecie() {
+        return specie;
     }
 
-    public void setSpecies(String species) {
-        this.species = species;
+    public void setSpecie(String specie) {
+        this.specie = specie;
     }
 
     public int getAge() {
@@ -93,7 +93,7 @@ public class Animal {
                 "id=" + id +
                 ", nickname='" + nickname + '\'' +
                 ", animalType='" + animalType + '\'' +
-                ", species='" + species + '\'' +
+                ", species='" + specie + '\'' +
                 ", age=" + age +
                 ", weight=" + weight + '\'' +
                 '}';

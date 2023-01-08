@@ -59,4 +59,9 @@ public class AnimalServiceImp implements AnimalService{
         }
         return  resultList;
     }
+
+    @Override
+    public Animal getAnimalById(int id) {
+        return animalRepository.getAnimalById(id);
+    }
 }
