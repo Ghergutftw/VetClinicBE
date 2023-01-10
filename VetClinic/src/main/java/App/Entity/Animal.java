@@ -93,7 +93,7 @@ public class Animal {
                 "id=" + id +
                 ", nickname='" + nickname + '\'' +
                 ", animalType='" + animalType + '\'' +
-                ", species='" + specie + '\'' +
+                ", specie='" + specie + '\'' +
                 ", age=" + age +
                 ", weight=" + weight + '\'' +
                 '}';
