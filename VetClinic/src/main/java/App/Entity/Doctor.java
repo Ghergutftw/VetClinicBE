@@ -21,6 +21,7 @@ public class Doctor {
 	private String lastName;
 
 	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@Column (name = "speciality")
@@ -77,6 +78,22 @@ public class Doctor {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getPassword() {
+		return user.getPassword();
+	}
+
+	public void setUserPassword(User user) {
+		this.user.setPassword(user.getPassword());
+	}
+
+	public  String getEmail(){
+		return user.getEmail();
+	}
+
+	public void setEmail(User user){
+		this.user.setEmail(user.getEmail());
 	}
 
 	public String getSpeciality() {

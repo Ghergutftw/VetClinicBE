@@ -9,10 +9,10 @@ public class User {
     @Column(name = "id")
     private int id;
 
-    @Column(name="password",nullable = false)
+    @Column(name="password")
     private String password;
 
-    @Column(name = "email",unique = true)
+    @Column(name = "email")
     private String email;
 
     public User(int id, String password, String email) {

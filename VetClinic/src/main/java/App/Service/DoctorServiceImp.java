@@ -32,7 +32,16 @@ public class DoctorServiceImp implements DoctorService {
 
     @Override
     public void addDoctor(Doctor doctor) {
-        doctorRepository.save(doctor);
+        Doctor doctor1 = new Doctor();
+        doctor1.setAge(doctor.getAge());
+        doctor1.setFirstName(doctor.getFirstName());
+        doctor1.setSpeciality(doctor.getSpeciality());
+        doctor1.setLastName(doctor.getLastName());
+        doctor1.setYearsOfExperience(doctor.getYearsOfExperience());
+        doctor1.getUser().setEmail(doctor.getUser().getEmail());
+        doctor1.getUser().setPassword(doctor.getUser().getPassword());
+
+        doctorRepository.save(doctor1);
         System.out.println("ADDED!");
     }
 
