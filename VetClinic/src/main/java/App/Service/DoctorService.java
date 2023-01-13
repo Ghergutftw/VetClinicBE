@@ -8,5 +8,5 @@ public interface DoctorService {
     void deleteDoctor(int id);
     void updateDoctor(Doctor doctor,int id);
 
-    Doctor getDoctor(int id);
+    Doctor getDoctorById1(int id);
 }

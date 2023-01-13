@@ -3,6 +3,8 @@ package App.RestController;
 import App.Entity.Doctor;
 import App.Repository.DoctorRepository;
 import App.Service.DoctorService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -23,8 +25,9 @@ public class RestControllerDoctor {
     }
 
     @PostMapping("/doctor")
-    public void addDoctor(@RequestBody Doctor doctor){
+    public ResponseEntity<String> addDoctor(@RequestBody Doctor doctor){
        doctorService.addDoctor(doctor);
+       return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/doctors/{id}")
@@ -39,7 +42,7 @@ public class RestControllerDoctor {
 
     @GetMapping("/doctor/{id}")
     public Doctor getDoctor(@PathVariable int id){
-        return doctorRepository.getDoctorById(id);
+        return doctorService.getDoctorById1(id);
     }
 
 }

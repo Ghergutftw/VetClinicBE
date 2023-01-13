@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Base64;
 import java.util.List;
 @Service
 public class DoctorServiceImp implements DoctorService {
@@ -32,16 +33,8 @@ public class DoctorServiceImp implements DoctorService {
 
     @Override
     public void addDoctor(Doctor doctor) {
-        Doctor doctor1 = new Doctor();
-        doctor1.setAge(doctor.getAge());
-        doctor1.setFirstName(doctor.getFirstName());
-        doctor1.setSpeciality(doctor.getSpeciality());
-        doctor1.setLastName(doctor.getLastName());
-        doctor1.setYearsOfExperience(doctor.getYearsOfExperience());
-        doctor1.getUser().setEmail(doctor.getUser().getEmail());
-        doctor1.getUser().setPassword(doctor.getUser().getPassword());
-
-        doctorRepository.save(doctor1);
+        doctor.getUser().setPassword(new String(Base64.getEncoder().encode(doctor.getUser().getPassword().getBytes())));
+        doctorRepository.save(doctor);
         System.out.println("ADDED!");
     }
 
@@ -63,8 +56,9 @@ public class DoctorServiceImp implements DoctorService {
         doctorRepository.save(doctor);
     }
 
-    @Override
-    public Doctor getDoctor(int id) {
-        return doctorRepository.getDoctorById(id);
+    public Doctor getDoctorById1(int id) {
+        Doctor doctor = doctorRepository.getDoctorById(id);
+        doctor.getUser().setPassword(new String(Base64.getDecoder().decode(doctor.getPassword())));
+        return doctor;
     }
 }
