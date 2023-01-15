@@ -45,9 +45,16 @@ public class RestControllerUser {
     }
 
     @GetMapping("/getDecoded/{encodedPassword}")
-    public String getDecodedPassword(@PathVariable String encodedPassword){
-        return userService.getDecodedPassword(encodedPassword);
+    public Optional<String> getDecodedPassword(@PathVariable String encodedPassword){
+        return Optional.ofNullable(userService.getDecodedPassword(encodedPassword));
     }
+
+    @GetMapping("/getEncoded/{decodedPassword}")
+    public Optional<String> getEncodedPassword(@PathVariable String decodedPassword){
+        return Optional.ofNullable(userService.getEncodedPassword(decodedPassword));
+    }
+
+
 
 
 }

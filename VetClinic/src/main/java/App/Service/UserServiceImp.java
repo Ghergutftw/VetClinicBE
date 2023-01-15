@@ -76,4 +76,9 @@ public class UserServiceImp implements UserService{
         decodedPassword = new String(decodedPassword).getBytes();
         return new String(decodedPassword);
     }
+
+    @Override
+    public String getEncodedPassword(String decodedPassword) {
+        return Base64.getEncoder().encodeToString(decodedPassword.getBytes());
+    }
 }

@@ -12,4 +12,5 @@ public interface UserService {
     void login(User user);
     Optional<User> getUserById(int id);
     String getDecodedPassword(String encodedPassword);
+    String getEncodedPassword(String decodedPassword);
 }
