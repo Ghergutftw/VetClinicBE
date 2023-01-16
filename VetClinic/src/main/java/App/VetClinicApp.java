@@ -1,19 +1,18 @@
 package App;
 
+import java.util.Calendar;
+import java.util.List;
+import java.util.TimeZone;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import App.Entity.Doctor;
 import App.Entity.WorkingHours;
-import App.Repository.ConsultationRepository;
-import App.Repository.DoctorRepository;
-import App.Repository.UserRepository;
 import App.Repository.WorkingHoursRepository;
 import App.Service.ConsultationService;
 import App.Service.DoctorService;
 import App.Service.UserService;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import java.util.Calendar;
-import java.util.List;
-import java.util.TimeZone;
 
 @SpringBootApplication
 public class VetClinicApp {

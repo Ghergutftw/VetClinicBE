@@ -1,0 +1,4 @@
+1. First add the doctor
+2. Change the :
+spring.jpa.hibernate.ddl-auto=create in application.properties to spring.jpa.hibernate.ddl-auto=update
+3. Do the rest
