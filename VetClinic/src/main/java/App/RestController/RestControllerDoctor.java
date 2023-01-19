@@ -1,5 +1,6 @@
 package App.RestController;
 
+import App.DTO.DoctorDTO;
 import App.Entity.Doctor;
 import App.Repository.DoctorRepository;
 import App.Service.DoctorService;
@@ -20,12 +21,12 @@ public class RestControllerDoctor {
     }
 
     @GetMapping("/doctors")
-    public List<Doctor> getDoctors(){
+    public List<DoctorDTO> getDoctors(){
        return doctorService.getDoctors();
     }
 
     @PostMapping("/doctor")
-    public ResponseEntity<String> addDoctor(@RequestBody Doctor doctor){
+    public ResponseEntity<String> addDoctor(@RequestBody DoctorDTO doctor){
        doctorService.addDoctor(doctor);
        return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -36,12 +37,12 @@ public class RestControllerDoctor {
     }
 
     @PutMapping( "/doctors/{id}")
-    public void updateDoctor(@RequestBody Doctor doctor,@PathVariable int id) {
+    public void updateDoctor(@RequestBody DoctorDTO doctor,@PathVariable int id) {
         doctorService.updateDoctor(doctor,id);
     }
 
     @GetMapping("/doctor/{id}")
-    public Doctor getDoctor(@PathVariable int id){
+    public DoctorDTO getDoctor(@PathVariable int id){
         return doctorService.getDoctorById1(id);
     }
 

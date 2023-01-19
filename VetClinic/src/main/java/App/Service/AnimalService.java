@@ -1,14 +1,15 @@
 package App.Service;
 
+import App.DTO.AnimalDTO;
+import App.DTO.ConsultationDTO;
 import App.Entity.Animal;
 import App.Entity.Consultation;
 import java.util.List;
 public interface AnimalService {
-    List<Animal> getAnimals();
-    void addAnimal(Animal animal);
+    List<AnimalDTO> getAnimals();
+    void addAnimal(AnimalDTO animal);
     void deleteAnimal(int id);
-    void updateAnimal(Animal animal, int id);
-    List<Consultation> showHistoryOfAnAnimal (int id);
-
-    Animal getAnimalById(int id);
+    void updateAnimal(AnimalDTO animal, int id);
+    List<ConsultationDTO> showHistoryOfAnAnimal (int id);
+    AnimalDTO getAnimalById(int id);
 }

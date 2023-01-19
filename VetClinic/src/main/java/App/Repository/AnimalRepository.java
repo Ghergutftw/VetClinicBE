@@ -1,5 +1,6 @@
 package App.Repository;
 
+import App.DTO.AnimalDTO;
 import App.Entity.Animal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

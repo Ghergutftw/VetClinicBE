@@ -1,5 +1,6 @@
 package App.RestController;
 
+import App.DTO.UserDTO;
 import App.Entity.User;
 import App.Service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -16,17 +17,17 @@ public class RestControllerUser {
     }
 
     @PostMapping("/user")
-    public void createUser(@RequestBody User user){
+    public void createUser(@RequestBody UserDTO user){
        userService.createUser(user);
     }
 
     @GetMapping("/users")
-    public List<User> getAllUsers(){
+    public List<UserDTO> getAllUsers(){
         return userService.getUsers();
     }
 
     @GetMapping("/user/{id}")
-    public Optional<User> getUserById(@PathVariable int id){
+    public Optional<UserDTO> getUserById(@PathVariable int id){
         return userService.getUserById(id);
     }
     @DeleteMapping("/user/{id}")
@@ -35,12 +36,12 @@ public class RestControllerUser {
     }
 
     @PutMapping ("/user/{id}")
-    public void updateUser(@RequestBody User user, @PathVariable int id ){
+    public void updateUser(@RequestBody UserDTO user, @PathVariable int id ){
        userService.updateUser(user,id);
     }
 
     @PutMapping("/login")
-    public void login(@RequestBody User user){
+    public void login(@RequestBody UserDTO user){
         userService.login(user);
     }
 

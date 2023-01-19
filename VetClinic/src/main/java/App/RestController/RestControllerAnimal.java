@@ -1,5 +1,7 @@
 package App.RestController;
 
+import App.DTO.AnimalDTO;
+import App.DTO.ConsultationDTO;
 import App.Entity.Animal;
 import App.Entity.Consultation;
 import App.Service.AnimalService;
@@ -20,12 +22,12 @@ public class RestControllerAnimal {
 
 
     @GetMapping("/animals")
-    public List<Animal> getAnimals(){
+    public List<AnimalDTO> getAnimals(){
         return animalService.getAnimals();
     }
 
     @PostMapping("/animal")
-    public void addAnimal(@RequestBody Animal animal){
+    public void addAnimal(@RequestBody AnimalDTO animal){
         animalService.addAnimal(animal);
     }
 
@@ -35,17 +37,17 @@ public class RestControllerAnimal {
     }
 
     @PutMapping( "/animals/{id}")
-    public void updateAnimal(@RequestBody Animal animal, @PathVariable int id) {
+    public void updateAnimal(@RequestBody AnimalDTO animal, @PathVariable int id) {
        animalService.updateAnimal(animal,id);
     }
 
     @GetMapping("/animal/{id}")
-    public List<Consultation> showHistoryOfAnAnimal (@PathVariable int id){
+    public List<ConsultationDTO> showHistoryOfAnAnimal (@PathVariable int id){
        return animalService.showHistoryOfAnAnimal(id);
     }
 
     @GetMapping("/animal-id/{id}")
-    public Animal getAnimalById(@PathVariable int id){
+    public AnimalDTO getAnimalById(@PathVariable int id){
         return animalService.getAnimalById(id);
     }
 

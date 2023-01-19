@@ -1,5 +1,6 @@
 package App.RestController;
 
+import App.DTO.PrescriptionDTO;
 import App.Entity.Prescription;
 import App.Service.PrescriptionService;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class RestControllerPrescription {
     }
 
     @GetMapping("/prescriptions")
-    public List<Prescription> showAllPrescriptions(){
+    public List<PrescriptionDTO> showAllPrescriptions(){
        return prescriptionService.showAllPrescriptions();
     }
 

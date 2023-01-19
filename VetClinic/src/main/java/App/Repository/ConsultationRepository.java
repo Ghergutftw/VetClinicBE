@@ -1,5 +1,7 @@
 package App.Repository;
 
+import App.DTO.ConsultationDTO;
+import App.DTO.WorkingHoursDTO;
 import App.Entity.Consultation;
 import App.Entity.WorkingHours;
 import org.springframework.data.jpa.repository.JpaRepository;

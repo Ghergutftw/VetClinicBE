@@ -1,5 +1,6 @@
 package App.RestController;
 
+import App.DTO.ConsultationDTO;
 import App.Entity.Consultation;
 import App.Service.ConsultationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,12 @@ public class RestControllerConsultation {
     }
 
     @PostMapping("/consultation")
-    public void createConsultation(@RequestBody Consultation consultation){
+    public void createConsultation(@RequestBody ConsultationDTO consultation){
        consultationService.createConsultation(consultation);
     }
 
     @GetMapping("/consultations")
-    public List<Consultation> getConsultations(){
+    public List<ConsultationDTO> getConsultations(){
         return consultationService.getConsultations();
     }
 
@@ -33,7 +34,7 @@ public class RestControllerConsultation {
     }
 
     @PutMapping("/consultations/{id}")
-    public void updateConsultation(@RequestBody Consultation consultation,@PathVariable int id)
+    public void updateConsultation(@RequestBody ConsultationDTO consultation,@PathVariable int id)
     {
         consultationService.updateConsultation(consultation,id);
     }

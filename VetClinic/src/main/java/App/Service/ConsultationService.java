@@ -1,10 +1,11 @@
 package App.Service;
 
+import App.DTO.ConsultationDTO;
 import App.Entity.Consultation;
 import java.util.List;
 public interface ConsultationService {
-    void createConsultation(Consultation consultation);
-    List<Consultation> getConsultations();
+    void createConsultation(ConsultationDTO consultation);
+    List<ConsultationDTO> getConsultations();
     void deleteConsultation(int id);
-    void updateConsultation(Consultation consultation,int id);
+    void updateConsultation(ConsultationDTO consultation,int id);
 }

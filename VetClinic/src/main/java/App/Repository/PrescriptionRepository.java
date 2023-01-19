@@ -1,5 +1,6 @@
 package App.Repository;
 
+import App.DTO.PrescriptionDTO;
 import App.Entity.Prescription;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

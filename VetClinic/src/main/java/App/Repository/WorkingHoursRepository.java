@@ -1,5 +1,6 @@
 package App.Repository;
 
+import App.DTO.WorkingHoursDTO;
 import App.Entity.WorkingHours;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

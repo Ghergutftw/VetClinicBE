@@ -1,11 +1,13 @@
 package App.Service;
 
+import App.DTO.UserDTO;
 import App.Entity.User;
 import App.Repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -13,22 +15,28 @@ import java.util.Optional;
 @Service
 public class UserServiceImp implements UserService{
     private final UserRepository userRepository;
-
+    @Autowired
+    private ModelMapper modelMapper;
     @Autowired
     public UserServiceImp(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
-    public void createUser(User user) {
+    public void createUser(UserDTO user) {
         user.setPassword(new String(Base64.getEncoder().encode(user.getPassword().getBytes())));
-        userRepository.save(user);
+        userRepository.save(modelMapper.map(user,User.class));
         System.out.println("CREATED!");
     }
 
     @Override
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public List<UserDTO> getUsers() {
+        List<UserDTO> userDTOList = new ArrayList<>();
+        List<User> userList = userRepository.findAll();
+        for (User user:userList) {
+            userDTOList.add(modelMapper.map(user, UserDTO.class));
+        }
+        return userDTOList;
     }
 
     @Override
@@ -38,22 +46,26 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public void updateUser(User user, int id) {
+    public void updateUser(UserDTO user, int id) {
         user.setId(id);
         user.setPassword(new String(Base64.getEncoder().encode(user.getPassword().getBytes())));
-        userRepository.save(user);
+        userRepository.save(modelMapper.map(user,User.class));
     }
 
     @Override
-    public void login(User user) {
+    public void login(UserDTO user) {
         String testingEmail=user.getEmail();
         String testingPassword=user.getPassword();
         //ca sa nu expunem parola din baza de date o criptam si pe cea cu care sa verificam astfel comparam criptat vs criptat
         //!!!! sa fie aceeasi criptare
         testingPassword=Base64.getEncoder().encodeToString(testingPassword.getBytes());
         List<User> users=userRepository.findAll();
+        List<UserDTO> userDTOList=new ArrayList<>();
+        for (User user1: users) {
+            userDTOList.add(modelMapper.map(user1,UserDTO.class));
+        }
         boolean found=false;
-        for (User theUser:users) {
+        for (UserDTO theUser:userDTOList) {
             if (testingEmail.equals(theUser.getEmail()) && testingPassword.equals(theUser.getPassword())) {
                 found = true;
                 break;
@@ -66,8 +78,8 @@ public class UserServiceImp implements UserService{
         }
     }
     @Override
-    public Optional<User> getUserById(int id) {
-       return userRepository.findById(id);
+    public Optional<UserDTO> getUserById(int id) {
+        return Optional.ofNullable(modelMapper.map(userRepository.findById(id), UserDTO.class));
     }
 
     @Override
