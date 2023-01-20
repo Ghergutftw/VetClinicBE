@@ -1,5 +1,6 @@
 package App.DTO;
 
+import App.Entity.User;
 import lombok.*;
 
 @Data
@@ -12,9 +13,8 @@ public class DoctorDTO {
     private int id;
     private String firstName;
     private String lastName;
-    private UserDTO user;
+    private User user;
     private String speciality;
-
     private int age;
     private int yearsOfExperience;
 }

@@ -44,8 +44,11 @@ public class DoctorServiceImp implements DoctorService {
 
     @Override
     public void addDoctor(DoctorDTO doctor) {
-        doctor.getUser().setPassword(new String(Base64.getEncoder().encode(doctor.getUser().getPassword().getBytes())));
+        //todo : Incearca sa optimisezi
+        String encryptedPassword = new String(Base64.getEncoder().encode(doctor.getUser().getPassword().getBytes()));
+        doctor.getUser().setPassword(encryptedPassword);
         Doctor doctorEntity = modelMapper.map(doctor,Doctor.class);
+        doctorEntity.getUser().setPassword(encryptedPassword);
         doctorRepository.save(doctorEntity);
         System.out.println("ADDED!");
     }
