@@ -22,14 +22,14 @@ public class ConsultationServiceImp implements ConsultationService {
    private final WorkingHoursRepository workingHoursRepository;
     private final AnimalRepository animalRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public ConsultationServiceImp(ConsultationRepository consultationRepository, WorkingHoursRepository workingHoursRepository, AnimalRepository animalRepository) {
+    public ConsultationServiceImp(ConsultationRepository consultationRepository, WorkingHoursRepository workingHoursRepository, AnimalRepository animalRepository, ModelMapper modelMapper) {
         this.consultationRepository = consultationRepository;
         this.workingHoursRepository = workingHoursRepository;
         this.animalRepository = animalRepository;
+        this.modelMapper = modelMapper;
     }
     @Override
     public void createConsultation(ConsultationDTO consultation) {
@@ -42,11 +42,12 @@ public class ConsultationServiceImp implements ConsultationService {
         if(theWorkingHours!=null&&theWorkingHours.size()>0)
         {
             if(consultation.getAnimal()!=null){
-//                consultation.setAnimal(animalRepository.save(modelMapper.map(consultation.getAnimal(),AnimalDTO.class)));
-//                consultation.setAnimal(modelMapper.map(animalRepository.save(modelMapper.map(consultation.getAnimal(),AnimalDTO.class),Animal.class)));
+                consultation.setAnimal(modelMapper.map(animalRepository.save(modelMapper.map(consultation,Consultation.class).getAnimal()),ConsultationDTO.class).getAnimal());
                 consultation.setWorkingHours(modelMapper.map(theWorkingHours.get(0),WorkingHoursDTO.class));
                 consultation.getWorkingHours().setStatus("USED");
             }
+            assert consultation.getAnimal() != null;
+            consultation.getAnimal().setSpecie(consultation.getAnimal().getSpecie());
             consultationRepository.save(modelMapper.map(consultation,Consultation.class));
             System.out.println("Programat ! Pe data de " + consultation.getIntendedHour()  );
         }else {
